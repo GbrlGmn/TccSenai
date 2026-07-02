@@ -1,0 +1,11 @@
+Regras
+
+View - nunca acessa o banco de dados
+
+DAO - Data Access Object - acessa o banco de dados
+
+Model - representa a entidade do banco de dados, e regras de negocio
+
+Controller - recebe as requisições do usuário, chama o model e retorna a respostad
+
+link: https://www.youtube.com/watch?v=Do2AnqLnqPo&list=PLHVpcBDJr5dmL-5tYqBmf_PxJrtrdAMT6&index=3
