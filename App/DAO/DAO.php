@@ -40,7 +40,7 @@ abstract class DAO extends PDO
          * conexão será criada, caso contrário, a mesma conexão já aberta será usada.
          * Esse ponto será muito útil ao trabalhar com transações ACID.
          */
-        if (self::$conexao == null) 
+         
         {
             /**
              * Criando a conexão e armazenado na propriedade definida para tal.

@@ -7,8 +7,10 @@
 
 use App\Controller\{
     AlunoController,
+    UsuarioController,
     InicialController
 };
+use App\Model\Usuario;
 
 /* Para saber mais sobre a função 
  * parse_url: https://www.php.net/manual/pt_BR/function.parse-url.php
@@ -39,5 +41,17 @@ switch ($url) {
 
     case '/aluno/delete':
         AlunoController::delete();
+        break;
+
+    case '/usuario':
+        UsuarioController::listar();
+        break;
+
+    case '/usuario/cadastro':
+        UsuarioController::cadastro();
+        break;
+
+    case '/usuario/delete':
+        UsuarioController::delete();
         break;
 }

@@ -11,7 +11,9 @@
                 <a class="nav-link" href="/livro">Livros</a>
                 <a class="nav-link" href="/cadastro">Categorias</a>
                 <a class="nav-link" href="/autores">Autores</a>
+                <a class="nav-link" href="/usuario">usuario</a>
             </div>
+
         </div>
     </div>
 </nav>
