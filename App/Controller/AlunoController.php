@@ -4,12 +4,14 @@
  * Declaração de namespaces com sub-namespaces:
  * https://www.php.net/manual/pt_BR/language.namespaces.nested.php
  */
+
 namespace App\Controller;
 
 /**
  * Definimos aqui que nossa classe precisa incluir uma classe de outro subnamespace
  * do projeto, no caso a classe Aluno do sub-namespace Model
  */
+
 use App\Model\Aluno;
 
 /**
@@ -23,7 +25,7 @@ use App\Model\Aluno;
  * pode fazer o extends dela, por exemplo: class Teste extends AlunoController.
  * Veja mais sobre final aqui: https://www.php.net/manual/pt_BR/language.oop5.final.php
  */
-final class AlunoController
+final class AlunoController extends Controller
 {
     /**
      * Declaração de membros de classe estáticos:
@@ -31,10 +33,10 @@ final class AlunoController
      * Note o tipo de retorno void, ou seja, esse método
      * é um procedimento e não tem retorno.
      */
-    public static function cadastro() : void
+    public static function cadastro(): void
     {
-        if($_SERVER['REQUEST_METHOD'] == "POST")
-        {
+        parent::isProtected();
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $model = new Aluno();
             $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
             $model->Nome = $_POST['nome'];
@@ -43,35 +45,35 @@ final class AlunoController
             $model->save();
 
             header("Location: /aluno");
-
         } else {
 
             $model = new Aluno();
 
-            if(isset($_GET['id']))
-            {              
-                $model = $model->getById( (int) $_GET['id'] );
+            if (isset($_GET['id'])) {
+                $model = $model->getById((int) $_GET['id']);
             }
 
             include VIEWS . '/Aluno/form_aluno.php';
-        }        
+        }
     }
 
-    
-    public static function listar() : void
+
+    public static function listar(): void
     {
+        parent::isProtected();
         $aluno = new Aluno();
         $lista = $aluno->getAllRows();
 
         include VIEWS . '/Aluno/lista_aluno.php';
-    } 
-    
-    
-    public static function delete() : void
+    }
+
+
+    public static function delete(): void
     {
+        
         $aluno = new Aluno();
 
-        $aluno->delete( (int) $_GET['id']);
+        $aluno->delete((int) $_GET['id']);
 
         header("Location: /aluno");
     }

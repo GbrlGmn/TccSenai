@@ -26,7 +26,7 @@ class UsuarioDAO extends DAO
         $stmt = parent::$conexao->prepare($sql);
         $stmt->bindValue(1, $model->Nome);
         $stmt->bindValue(2, $model->Email);
-        $stmt->bindValue(3, $model->Senha);
+        $stmt->bindValue(3, sha1($model->Senha));
 
         $stmt->execute();
 

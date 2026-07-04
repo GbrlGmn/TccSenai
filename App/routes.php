@@ -10,6 +10,7 @@ use App\Controller\{
     AutorController,
     CategoriaController,
     UsuarioController,
+    LoginController,
     InicialController
 };
 
@@ -28,6 +29,13 @@ switch ($url) {
         InicialController::index();
         break;
 
+    case '/login':
+        LoginController::index();
+        break;
+
+    case 'logout':
+        LoginController::logout();
+        break;
     case '/aluno':
         /**
          * Para saber mais sobre o Operador de Resolução de Escopo (::), 
