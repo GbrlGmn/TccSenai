@@ -12,8 +12,6 @@
 
 <body class="bg-body-tertiary">
 
-    <?php include VIEWS . '/Includes/menu.php'; ?>
-
     <div class="container py-4">
 
         <div class="card shadow border-0 rounded-4">

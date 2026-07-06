@@ -13,7 +13,7 @@ final class CategoriaController
 
             $model = new Categoria();
             $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
-       
+
             $model->Descricao = $_POST['desc'];
 
             $model->save();
@@ -34,8 +34,10 @@ final class CategoriaController
     {
         $categoria = new Categoria();
         $lista = $categoria->getAllRows();
+        $titulo = 'Categorias';
+        $view = VIEWS . '/Categoria/lista_categoria.php';
 
-        include VIEWS . '/Categoria/lista_categoria.php';
+        include VIEWS . '/Layout/layout.php';
     }
 
     public static function delete(): void

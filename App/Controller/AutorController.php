@@ -34,8 +34,10 @@ final class AutorController
     {
         $autor = new Autor();
         $lista = $autor->getAllRows();
+        $titulo = 'Autores';
+        $view = VIEWS . '/Autor/lista_autor.php';
 
-        include VIEWS . '/Autor/lista_autor.php';
+        include VIEWS . '/Layout/layout.php';
     }
 
     public static function delete(): void

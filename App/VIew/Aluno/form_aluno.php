@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pt-BR">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +13,8 @@
 <body class="bg-light">
 
     <?php
- include VIEWS . '/Includes/menu.php'; 
-  $model = isset($model) ? $model : new \App\Model\Aluno();  ?>
+    include VIEWS . '/Includes/navbar.php';
+    $model = isset($model) ? $model : new \App\Model\Aluno();  ?>
 
     <div class="container py-5">
 

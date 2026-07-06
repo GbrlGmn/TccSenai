@@ -117,7 +117,7 @@
 
 <body class="bg-light">
 
-  <//?php include VIEWS . '/Includes/menu.php' ?>
+  <!-- Menu removido; o layout principal é carregado pela controller -->
 
   <div class="container py-5">
 

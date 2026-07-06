@@ -63,14 +63,16 @@ final class AlunoController extends Controller
         parent::isProtected();
         $aluno = new Aluno();
         $lista = $aluno->getAllRows();
+        $titulo = 'Alunos';
+        $view = VIEWS . '/Aluno/lista_aluno.php';
 
-        include VIEWS . '/Aluno/lista_aluno.php';
+        include VIEWS . '/Layout/layout.php';
     }
 
 
     public static function delete(): void
     {
-        
+
         $aluno = new Aluno();
 
         $aluno->delete((int) $_GET['id']);

@@ -1,157 +1,134 @@
-<!doctype html>
-<html lang="pt-BR">
+<div class="space-y-6">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema Biblioteca | Lista de Autores</title>
+    <div class="rounded-3xl bg-white p-6 shadow-sm">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-</head>
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
-<body class="bg-body-tertiary">
+            <div>
+                <h3 class="text-2xl font-semibold text-slate-800">
+                    <i class="bi bi-pencil-square"></i>
+                    Lista de Autores
+                </h3>
 
-    <?php include VIEWS . '/Includes/menu.php'; ?>
-
-    <div class="container py-4">
-
-        <div class="card shadow border-0 rounded-4">
-
-            <div class="card-header bg-primary text-white">
-
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-
-                    <div>
-                        <h3 class="mb-1">
-                            <i class="bi bi-people-fill"></i>
-                            Lista de Autores
-                        </h3>
-
-                        <small class="text-white-50">
-                            Gerencie todos os autores cadastrados.
-                        </small>
-                    </div>
-
-                    <a href="/autor/cadastro"
-                        class="btn btn-light fw-semibold">
-                        <i class="bi bi-plus-circle"></i>
-                        Novo Autor
-                    </a>
-
-                </div>
-
+                <p class="mt-1 text-sm text-slate-500">
+                    Gerencie todos os autores cadastrados.
+                </p>
             </div>
 
-            <div class="card-body">
-
-                <div class="table-responsive">
-
-                    <table class="table table-hover table-striped align-middle">
-
-                        <thead class="table-dark">
-
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Data Nasc.</th>
-                                <th>CPF</th>
-                                <th class="text-center">Ações</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            <?php if (count($lista) > 0): ?>
-
-                                <?php foreach ($lista as $autor): ?>
-
-                                    <tr>
-
-                                        <td>
-                                            <span class="badge bg-secondary">
-                                                <?= $autor->Id ?>
-                                            </span>
-                                        </td>
-
-                                        <td class="fw-semibold">
-                                            <?= $autor->Nome ?>
-                                        </td>
-
-                                        <td>
-                                            <?= $autor->DataNasc ?>
-                                        </td>
-
-                                        <td>
-                                            <?= $autor->CPF ?>
-                                        </td>
-
-                                        <td>
-
-                                            <div class="d-grid d-md-flex justify-content-center gap-2">
-
-                                                <a href="/autor/cadastro?id=<?= $autor->Id ?>"
-                                                    class="btn btn-warning btn-sm">
-
-                                                    <i class="bi bi-pencil-square"></i>
-                                                    Editar
-
-                                                </a>
-
-                                                <a href="/autor/delete?id=<?= $autor->Id ?>"
-                                                    class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Deseja realmente excluir este autor?')">
-
-                                                    <i class="bi bi-trash"></i>
-                                                    Excluir
-
-                                                </a>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
-
-                                <?php endforeach; ?>
-
-                            <?php else: ?>
-
-                                <tr>
-
-                                    <td colspan="5" class="text-center py-5">
-
-                                        <i class="bi bi-database-x fs-1 text-secondary"></i>
-
-                                        <h5 class="mt-3">
-                                            Nenhum autor cadastrado
-                                        </h5>
-
-                                        <p class="text-muted">
-                                            Clique em <strong>Novo Autor</strong> para realizar o primeiro cadastro.
-                                        </p>
-
-                                    </td>
-
-                                </tr>
-
-                            <?php endif; ?>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
+            <a href="/autor/cadastro" class="inline-flex items-center gap-2 rounded-lg bg-blue-700 px-4 py-2 font-semibold text-white transition hover:bg-blue-800">
+                <i class="bi bi-plus-circle"></i>
+                Novo Autor
+            </a>
 
         </div>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
 
-</body>
+        <div class="overflow-x-auto">
 
-</html>
+            <table class="min-w-full divide-y divide-slate-200">
+
+                <thead class="bg-slate-50">
+
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Nome</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Data Nasc.</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">CPF</th>
+                        <th class="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-600">Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody class="divide-y divide-slate-100 bg-white">
+
+                    <?php if (count($lista) > 0): ?>
+
+                        <?php foreach ($lista as $autor): ?>
+
+                            <tr>
+
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
+                                        <?= $autor->Id ?>
+                                    </span>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap font-semibold text-slate-800">
+                                    <?= $autor->Nome ?>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap text-slate-600">
+                                    <?= $autor->DataNasc ?>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap text-slate-600">
+                                    <?= $autor->CPF ?>
+                                </td>
+
+                                <td class="px-6 py-4">
+
+                                    <div class="flex flex-wrap justify-center gap-2">
+
+                                        <a href="/autor/cadastro?id=<?= $autor->Id ?>"
+                                            class="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-3 py-2 text-sm font-semibold text-white transition hover:bg-amber-600">
+
+                                            <i class="bi bi-pencil-square"></i>
+                                            Editar
+
+                                        </a>
+
+                                        <a href="/autor/delete?id=<?= $autor->Id ?>"
+                                            class="inline-flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+                                            onclick="return confirm('Deseja realmente excluir este autor?')">
+
+                                            <i class="bi bi-trash"></i>
+                                            Excluir
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
+
+                        <tr>
+
+                            <td colspan="5" class="px-6 py-12 text-center">
+
+                                <i class="bi bi-database-x fs-1 text-slate-400"></i>
+
+                                <h5 class="mt-3 font-semibold text-slate-700">
+                                    Nenhum autor cadastrado
+                                </h5>
+
+                                <p class="mt-1 text-sm text-slate-500">
+                                    Clique em <strong>Novo Autor</strong> para realizar o primeiro cadastro.
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>

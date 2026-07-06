@@ -11,8 +11,7 @@
 
 <body class="bg-light">
 
-    <?php include VIEWS . '/Includes/menu.php'; 
-    $model = isset($model) ? $model : new \App\Model\Categoria();?>
+    <?php $model = isset($model) ? $model : new \App\Model\Categoria(); ?>
 
     <div class="container py-5">
 

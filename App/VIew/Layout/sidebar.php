@@ -1,12 +1,12 @@
 <aside
     id="sidebar"
-    class="fixed top-0 left-0 z-50 h-screen w-72 bg-blue-900 text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+    class="fixed inset-y-0 left-0 z-[60] flex h-screen w-72 flex-col bg-blue-900 text-white -translate-x-full transition-transform duration-300 lg:translate-x-0">
 
-    <div class="p-6 border-b border-blue-800">
+    <div class="flex items-center justify-between border-b border-blue-800 p-6">
 
         <div class="flex items-center gap-3">
 
-            <div class="w-12 h-12 rounded-lg bg-white text-blue-900 flex items-center justify-center">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-blue-900">
 
                 <i class="bi bi-book-half text-2xl"></i>
 
@@ -14,7 +14,7 @@
 
             <div>
 
-                <h2 class="font-bold text-2xl">
+                <h2 class="text-2xl font-bold">
                     SisBiblioteca
                 </h2>
 
@@ -26,47 +26,55 @@
 
         </div>
 
+        <button
+            id="sidebarClose"
+            type="button"
+            class="rounded-lg p-2 text-blue-100 transition hover:bg-blue-800 lg:hidden"
+            aria-label="Fechar menu">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
     </div>
 
-    <nav class="mt-8 flex flex-col h-[calc(100vh-120px)]">
+    <nav class="flex-1 overflow-y-auto px-3 py-6">
 
         <div>
 
-            <p class="px-6 mb-3 text-xs uppercase text-blue-300 font-semibold">
+            <p class="mb-3 px-4 text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">
                 Menu
             </p>
 
-            <a href="/" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-house"></i>
                 Dashboard
             </a>
 
-            <a href="/aluno" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/aluno" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-people"></i>
                 Alunos
             </a>
 
-            <a href="/livro" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/livro" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-book"></i>
                 Livros
             </a>
 
-            <a href="/emprestimo" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/emprestimo" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-arrow-left-right"></i>
                 Empréstimos
             </a>
 
-            <a href="/categoria" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/categoria" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-tags"></i>
                 Categorias
             </a>
 
-            <a href="/autor" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/autor" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-pencil-square"></i>
                 Autores
             </a>
 
-            <a href="/usuario" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="/usuario" data-nav-link class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-person-circle"></i>
                 Usuários
             </a>
@@ -75,29 +83,29 @@
 
         <div class="mt-8">
 
-            <hr class="border-blue-800 mb-5">
+            <hr class="mb-5 border-blue-800">
 
-            <p class="px-6 mb-3 text-xs uppercase text-blue-300 font-semibold">
+            <p class="mb-3 px-4 text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">
                 Sistema
             </p>
 
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="#" class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-bar-chart"></i>
                 Relatórios
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-800">
+            <a href="#" class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-blue-100 transition hover:bg-blue-800 hover:text-white">
                 <i class="bi bi-gear"></i>
                 Configurações
             </a>
 
         </div>
 
-        <div class="mt-auto">
+        <div class="mt-auto pt-6">
 
             <hr class="border-blue-800">
 
-            <a href="#" class="flex items-center gap-3 px-6 py-4 hover:bg-red-700">
+            <a href="/login" class="flex items-center gap-3 rounded-lg px-4 py-4 text-sm font-medium text-blue-100 transition hover:bg-red-700 hover:text-white">
                 <i class="bi bi-box-arrow-right"></i>
                 Sair do sistema
             </a>
@@ -107,3 +115,5 @@
     </nav>
 
 </aside>
+
+<div id="sidebarOverlay" class="fixed inset-0 z-40 hidden bg-slate-900/60 lg:hidden"></div>

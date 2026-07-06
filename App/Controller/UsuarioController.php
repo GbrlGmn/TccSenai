@@ -37,6 +37,7 @@ final class UsuarioController
         $lista = $usuario->getAllRows();
 
         include VIEWS . '/Usuario/lista_usuario.php';
+        include VIEWS . '/Layout/layout.php';
     }
 
     public static function delete(): void
