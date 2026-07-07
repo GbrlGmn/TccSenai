@@ -47,7 +47,6 @@ final class AlunoDAO extends DAO
         // estamos acessando o método prepare dentro da propriedade que guarda a conexão
         // com o MySQL, via operador seta "->". Isso significa que o prepare "está dentro"
         // da propriedade $conexao e recebe nossa string sql com os devidor marcadores.
-        // Para saber mais sobre Preparated Statements, leia: https://www.codigofonte.com.br/artigos/evite-sql-injection-usando-prepared-statements-no-php
         $stmt = parent::$conexao->prepare($sql);
         
         // Nesta etapa os bindValue são responsáveis por receber um valor e trocar em uma 

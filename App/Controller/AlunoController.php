@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Declaração de namespaces com sub-namespaces:
- * https://www.php.net/manual/pt_BR/language.namespaces.nested.php
+ * Declaração de namespaces com sub-namespaces
+ * 
  */
 
 namespace App\Controller;
@@ -13,6 +13,7 @@ namespace App\Controller;
  */
 
 use App\Model\Aluno;
+use Exception;
 
 /**
  * Classes Controller são responsáveis por processar as requisições do usuário.
@@ -23,38 +24,55 @@ use App\Model\Aluno;
  * chamar outra Controller.
  * Uma classe definida como final não pode ter filhos, ou seja, nenhuma outra classe
  * pode fazer o extends dela, por exemplo: class Teste extends AlunoController.
- * Veja mais sobre final aqui: https://www.php.net/manual/pt_BR/language.oop5.final.php
  */
 final class AlunoController extends Controller
 {
-    /**
-     * Declaração de membros de classe estáticos:
-     * https://www.php.net/manual/pt_BR/language.oop5.static.php
-     * Note o tipo de retorno void, ou seja, esse método
-     * é um procedimento e não tem retorno.
-     */
+    public static function index(): void
+    {
+        parent::isProtected();
+
+        $model = new Aluno();
+        $titulo = 'Alunos';
+
+        try {
+            $model->rows_alunos = $model->getAllRows();
+        } catch (Exception $e) {
+            $model->setError("Ocorreu um erro ao buscar os alunos:");
+            $model->setError($e->getMessage());
+        }
+
+        parent::render('Aluno/lista_aluno.php', $model, $titulo);
+    }
+
+
     public static function cadastro(): void
     {
         parent::isProtected();
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $model = new Aluno();
-            $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
-            $model->Nome = $_POST['nome'];
-            $model->RA = $_POST['ra'];
-            $model->Curso = $_POST['curso'];
-            $model->save();
 
-            header("Location: /aluno");
-        } else {
+        $model = new Aluno();
 
-            $model = new Aluno();
+        try {
+            if (parent::isPost()) {
+                $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
+                $model->Nome = $_POST['nome'];
+                $model->RA = $_POST['ra'];
+                $model->Curso = $_POST['curso'];
+                $model->save();
 
-            if (isset($_GET['id'])) {
-                $model = $model->getById((int) $_GET['id']);
+                parent::redirect("/aluno");
+            } else {
+
+                if (isset($_GET['id'])) {
+                    $model = $model->getById((int) $_GET['id']);
+                }
             }
+        } catch (Exception $e) {
 
-            include VIEWS . '/Aluno/form_aluno.php';
+            $model->setError($e->getMessage());
         }
+
+        $titulo = $model->Id ? 'Editar Aluno' : 'Cadastrar Aluno';
+        parent::render('Aluno/form_aluno.php', $model, $titulo);
     }
 
 
@@ -72,11 +90,22 @@ final class AlunoController extends Controller
 
     public static function delete(): void
     {
+        parent::isProtected();
 
-        $aluno = new Aluno();
+        $model = new Aluno();
 
-        $aluno->delete((int) $_GET['id']);
+        try {
+            $model->delete((int) $_GET['id']);
+            parent::redirect("/aluno");
+            return; // importante, pra não continuar depois do redirect
 
-        header("Location: /aluno");
+        } catch (Exception $e) {
+            $model->setError("Ocorreu um erro ao excluir o aluno:");
+            $model->setError($e->getMessage());
+            $model->rows_alunos = $model->getAllRows(); // recarrega a lista pro render funcionar
+        }
+
+        $titulo = 'Alunos';
+        parent::render('Aluno/lista_aluno.php', $model, $titulo);
     }
 }

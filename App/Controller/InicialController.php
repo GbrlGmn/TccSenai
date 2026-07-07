@@ -8,10 +8,6 @@ final class InicialController extends Controller
     {
         parent::isProtected();
 
-        $titulo = "Dashboard";
-
-        $view = VIEWS . "/Home/index.php";
-
-        include VIEWS . "/Layout/layout.php";
+        include VIEWS . '/Layout/layout.php';
     }
 }

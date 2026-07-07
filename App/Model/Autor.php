@@ -3,10 +3,14 @@
 namespace App\Model;
 
 use App\DAO\AutorDAO;
+use Exception;
 
-final class Autor
+final class Autor extends Model
 {
-    public $Id, $Nome, $DataNasc, $CPF;
+    public ?int $Id = null;
+    public ?string $Nome = null;
+    public ?string $Data_Nascimento = null;
+    public ?string $CPF = null;
 
     function save(): Autor
     {
