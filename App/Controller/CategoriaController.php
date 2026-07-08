@@ -3,49 +3,70 @@
 namespace App\Controller;
 
 use App\Model\Categoria;
+use Exception;
 
-final class CategoriaController
+final class CategoriaController extends Controller
 {
+    public static function index(): void
+    {
+        parent::isProtected();
+
+        $model = new Categoria();
+        $titulo = 'Categorias';
+
+        try {
+            $model->rows = $model->getAllRows();
+        } catch (Exception $e) {
+            $model->setError("Ocorreu um erro ao buscar as categorias:");
+            $model->setError($e->getMessage());
+        }
+
+        parent::render('Categoria/lista_categoria.php', $model, $titulo);
+    }
     public static function cadastro(): void
     {
+        parent::isProtected();
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $model = new Categoria();
 
-            $model = new Categoria();
-            $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
+        try {
+            if (parent::isPost()) {
+                $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
+                $model->Descricao = $_POST['descricao'];
+                $model->save();
 
-            $model->Descricao = $_POST['desc'];
+                parent::redirect("/categoria");
+            } else {
 
-            $model->save();
-
-            header("Location: /categoria");
-        } else {
-
-            $model = new Categoria();
-
-            if (isset($_GET['id'])) {
-                $model = $model->getById((int) $_GET['id']);
+                if (isset($_GET['id'])) {
+                    $model = $model->getById((int) $_GET['id']);
+                }
             }
+        } catch (Exception $e) {
 
-            include VIEWS . '/Categoria/form_categoria.php';
+            $model->setError($e->getMessage());
         }
-    }
-    public static function listar(): void
-    {
-        $categoria = new Categoria();
-        $lista = $categoria->getAllRows();
-        $titulo = 'Categorias';
-        $view = VIEWS . '/Categoria/lista_categoria.php';
 
-        include VIEWS . '/Layout/layout.php';
+        $titulo = $model->Id ? 'Editar Categoria' : 'Cadastrar Categoria';
+        parent::render('Categoria/form_categoria.php', $model, $titulo);
     }
 
     public static function delete(): void
     {
-        $categoria = new Categoria();
+        parent::isProtected();
 
-        $categoria->delete((int) $_GET['id']);
+        $model = new Categoria();
 
-        header("Location: /categoria");
+        try {
+            $model->delete((int) $_GET['id']);
+            parent::redirect("/categoria");
+        } catch (Exception $e) {
+            $model->setError("Ocorreu um erro ao excluir a categoria:");
+            $model->setError($e->getMessage());
+            $lista = $model->getAllRows();
+        }
+
+        $titulo = 'Categorias';
+        parent::render('Categoria/lista_categoria.php', $model, $titulo);
     }
 }

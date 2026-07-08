@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\DAO\CategoriaDAO;
 
-final class Categoria
+final class Categoria extends Model
 {
     public $Id, $Nome, $Descricao;
 
