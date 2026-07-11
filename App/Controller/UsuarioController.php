@@ -2,50 +2,64 @@
 
 namespace App\Controller;
 
-
 use App\Model\Usuario;
+use Exception;
 
-final class UsuarioController
+final class UsuarioController extends Controller
 {
     public static function cadastro(): void
     {
+        parent::isProtected();
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $model = new Usuario();
 
-            $model = new Usuario();
-            $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
-            $model->Nome = $_POST['nome'];
-            $model->Email = $_POST['email'];
-            $model->Senha = $_POST['senha'];
-            $model->save();
+        try {
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $model->Id = !empty($_POST['id']) ? $_POST['id'] : null;
+                $model->Nome = $_POST['nome'];
+                $model->Email = $_POST['email'];
+                $model->Senha = $_POST['senha'];
+                $model->save();
 
-            header("Location: /usuario");
-        } else {
-
-            $model = new Usuario();
+                parent::redirect("/usuario");
+                return;
+            }
 
             if (isset($_GET['id'])) {
                 $model = $model->getById((int) $_GET['id']);
             }
-
-            include VIEWS . '/Usuario/form_usuario.php';
+        } catch (Exception $e) {
+            $model->setError($e->getMessage());
         }
+
+        $titulo = $model->Id ? 'Editar Usuário' : 'Cadastrar Usuário';
+        parent::render('Usuario/form_usuario.php', $model, $titulo);
     }
+
     public static function listar(): void
     {
-        $usuario = new Usuario();
-        $lista = $usuario->getAllRows();
+        parent::isProtected();
 
-        include VIEWS . '/Usuario/lista_usuario.php';
-        include VIEWS . '/Layout/layout.php';
+        $usuario = new Usuario();
+        $titulo = 'Usuários';
+
+        try {
+            $usuario->rows = $usuario->getAllRows();
+        } catch (Exception $e) {
+            $usuario->setError($e->getMessage());
+        }
+
+        parent::render('Usuario/lista_usuario.php', $usuario, $titulo);
     }
 
     public static function delete(): void
     {
+        parent::isProtected();
+
         $usuario = new Usuario();
 
         $usuario->delete((int) $_GET['id']);
 
-        header("Location: /usuario");
+        parent::redirect("/usuario");
     }
 }

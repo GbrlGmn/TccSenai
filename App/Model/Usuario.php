@@ -4,9 +4,12 @@ namespace App\Model;
 
 use App\DAO\UsuarioDAO;
 
-final class Usuario
+final class Usuario extends Model
 {
-    public $Id, $Nome, $Email, $Senha;
+    public ?int $Id = null;
+    public ?string $Nome = null;
+    public ?string $Email = null;
+    public ?string $Senha = null;
 
     function save(): Usuario
     {

@@ -44,9 +44,9 @@
 
                 <tbody class="divide-y divide-slate-100 bg-white">
 
-                    <?php if (count($lista) > 0): ?>
+                    <?php if (count($model->rows_alunos) > 0): ?>
 
-                        <?php foreach ($lista as $aluno): ?>
+                        <?php foreach ($model->rows_alunos as $aluno): ?>
 
                             <tr>
 

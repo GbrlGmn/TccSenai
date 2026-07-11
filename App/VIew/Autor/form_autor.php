@@ -1,88 +1,73 @@
-<!doctype html>
-<html lang="pt-BR">
+<?php $model = isset($model) ? $model : new \App\Model\Autor(); ?>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema Biblioteca | Cadastro de Autor</title>
+<div class="container py-5">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <div class="row justify-content-center">
 
-<body class="bg-light">
+        <div class="col-md-8 col-lg-6">
 
-    <?php $model = isset($model) ? $model : new \App\Model\Autor(); ?>
+            <div class="card shadow-lg border-0">
 
-    <div class="container py-5">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <?= $model->Id ? "Editar Autor" : "Cadastrar Autor"; ?>
+                    </h3>
+                </div>
 
-        <div class="row justify-content-center">
+                <div class="card-body">
 
-            <div class="col-md-8 col-lg-6">
+                    <form method="post" action="/autor/cadastro">
 
-                <div class="card shadow-lg border-0">
+                        <input type="hidden" name="id" value="<?= $model->Id ?>">
 
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">
-                            <?= $model->Id ? "Editar Autor" : "Cadastrar Autor"; ?>
-                        </h3>
-                    </div>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nome"
+                                name="nome"
+                                value="<?= $model->Nome ?>"
+                                placeholder="Digite o nome do autor"
+                                required>
+                        </div>
 
-                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="data" class="form-label">Data de Nascimento</label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="data"
+                                name="data"
+                                value="<?= $model->DataNasc ?>"
+                                required>
+                        </div>
 
-                        <form method="post" action="/autor/cadastro">
+                        <div class="mb-4">
+                            <label for="cpf" class="form-label">CPF</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="cpf"
+                                name="cpf"
+                                value="<?= $model->CPF ?>"
+                                placeholder="Digite o CPF"
+                                required>
+                        </div>
 
-                            <input type="hidden" name="id" value="<?= $model->Id ?>">
+                        <div class="d-flex justify-content-between">
 
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="nome"
-                                    name="nome"
-                                    value="<?= $model->Nome ?>"
-                                    placeholder="Digite o nome do autor"
-                                    required>
-                            </div>
+                            <a href="/autor" class="btn btn-outline-secondary">
+                                Voltar
+                            </a>
 
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Data de Nascimento</label>
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    id="data"
-                                    name="data"
-                                    value="<?= $model->DataNasc ?>"
-                                    required>
-                            </div>
+                            <button type="submit" class="btn btn-success">
+                                Salvar
+                            </button>
 
-                            <div class="mb-4">
-                                <label for="cpf" class="form-label">CPF</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="cpf"
-                                    name="cpf"
-                                    value="<?= $model->CPF ?>"
-                                    placeholder="Digite o CPF"
-                                    required>
-                            </div>
+                        </div>
 
-                            <div class="d-flex justify-content-between">
-
-                                <a href="/autor" class="btn btn-outline-secondary">
-                                    Voltar
-                                </a>
-
-                                <button type="submit" class="btn btn-success">
-                                    Salvar
-                                </button>
-
-                            </div>
-
-                        </form>
-
-                    </div>
+                    </form>
 
                 </div>
 
@@ -92,8 +77,4 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+</div>

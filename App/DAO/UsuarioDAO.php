@@ -66,7 +66,7 @@ class UsuarioDAO extends DAO
         $stmt = parent::$conexao->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "App\Model\Aluno");
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "App\Model\Usuario");
     }
     public function delete(int $id): bool
     {

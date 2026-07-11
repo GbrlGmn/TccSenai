@@ -1,92 +1,74 @@
-<!doctype html>
-<html lang="pt-BR">
+<?php $model = isset($model) ? $model : new \App\Model\Aluno(); ?>
 
+<div class="container py-5">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema Biblioteca | Cadastro de Aluno</title>
+    <div class="row justify-content-center">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+        <div class="col-md-8 col-lg-6">
 
-<body class="bg-light">
+            <div class="card shadow-lg border-0">
 
-    <?php
-    include VIEWS . '/Includes/navbar.php';
-    $model = isset($model) ? $model : new \App\Model\Aluno();  ?>
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <?= $model->Id ? "Editar Aluno" : "Cadastrar Aluno"; ?>
+                    </h3>
+                </div>
 
-    <div class="container py-5">
+                <div class="card-body">
 
-        <div class="row justify-content-center">
+                    <form method="post" action="/aluno/cadastro">
 
-            <div class="col-md-8 col-lg-6">
+                        <input type="hidden" name="id" value="<?= $model->Id ?>">
 
-                <div class="card shadow-lg border-0">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nome"
+                                name="nome"
+                                value="<?= $model->Nome ?>"
+                                placeholder="Digite o nome do aluno"
+                                required>
+                        </div>
 
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="mb-0">
-                            <?= $model->Id ? "Editar Aluno" : "Cadastrar Aluno"; ?>
-                        </h3>
-                    </div>
+                        <div class="mb-3">
+                            <label for="ra" class="form-label">RA</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="ra"
+                                name="ra"
+                                value="<?= $model->RA ?>"
+                                placeholder="Digite o RA"
+                                required>
+                        </div>
 
-                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="curso" class="form-label">Curso</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="curso"
+                                name="curso"
+                                value="<?= $model->Curso ?>"
+                                placeholder="Digite o curso"
+                                required>
+                        </div>
 
-                        <form method="post" action="/aluno/cadastro">
+                        <div class="d-flex justify-content-between">
 
-                            <input type="hidden" name="id" value="<?= $model->Id ?>">
+                            <a href="/aluno" class="btn btn-outline-secondary">
+                                Voltar
+                            </a>
 
-                            <div class="mb-3">
-                                <label for="nome" class="form-label">Nome</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="nome"
-                                    name="nome"
-                                    value="<?= $model->Nome ?>"
-                                    placeholder="Digite o nome do aluno"
-                                    required>
-                            </div>
+                            <button type="submit" class="btn btn-success">
+                                Salvar
+                            </button>
 
-                            <div class="mb-3">
-                                <label for="ra" class="form-label">RA</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="ra"
-                                    name="ra"
-                                    value="<?= $model->RA ?>"
-                                    placeholder="Digite o RA"
-                                    required>
-                            </div>
+                        </div>
 
-                            <div class="mb-4">
-                                <label for="curso" class="form-label">Curso</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="curso"
-                                    name="curso"
-                                    value="<?= $model->Curso ?>"
-                                    placeholder="Digite o curso"
-                                    required>
-                            </div>
-
-                            <div class="d-flex justify-content-between">
-
-                                <a href="/aluno" class="btn btn-outline-secondary">
-                                    Voltar
-                                </a>
-
-                                <button type="submit" class="btn btn-success">
-                                    Salvar
-                                </button>
-
-                            </div>
-
-                        </form>
-
-                    </div>
+                    </form>
 
                 </div>
 
@@ -96,8 +78,4 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+</div>

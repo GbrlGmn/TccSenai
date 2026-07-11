@@ -42,9 +42,9 @@
 
                 <tbody class="divide-y divide-slate-100 bg-white">
 
-                    <?php if (count($lista) > 0): ?>
+                    <?php if (count($model->rows) > 0): ?>
 
-                        <?php foreach ($lista as $categoria): ?>
+                        <?php foreach ($model->rows as $categoria): ?>
 
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
