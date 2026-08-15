@@ -10,12 +10,10 @@ final class Usuario extends Model
     public ?string $Nome = null;
     public ?string $Email = null;
     public ?string $Senha = null;
-
     function save(): Usuario
     {
         return (new UsuarioDAO())->save($this);
     }
-
     function getById(int $Id): ?Usuario
     {
         return (new UsuarioDAO())->selectById($Id);

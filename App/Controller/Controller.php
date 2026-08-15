@@ -11,19 +11,15 @@ abstract class Controller
         if (!isset($_SESSION['usuario_logado']))
             header("Location: /login");
     }
-
     final protected static function render(string $view, ?Model $model = null, ?string $titulo = null): void
     {
         $view = VIEWS . "/$view";
-
         include VIEWS . '/Layout/layout.php';
     }
-
     final protected static function isPost(): bool
     {
         return $_SERVER['REQUEST_METHOD'] == "POST";
     }
-
     final protected static function redirect(string $route): void
     {
         header("Location: $route");

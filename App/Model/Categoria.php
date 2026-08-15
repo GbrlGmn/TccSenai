@@ -7,12 +7,10 @@ use App\DAO\CategoriaDAO;
 final class Categoria extends Model
 {
     public $Id, $Nome, $Descricao;
-
     function save(): Categoria
     {
         return (new CategoriaDAO())->save($this);
     }
-
     function getById(int $Id): ?Categoria
     {
         return (new CategoriaDAO())->selectById($Id);

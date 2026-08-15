@@ -11,12 +11,10 @@ final class Autor extends Model
     public ?string $Nome = null;
     public ?string $Data_Nascimento = null;
     public ?string $CPF = null;
-
     function save(): Autor
     {
         return (new AutorDAO())->save($this);
     }
-
     function getById(int $Id): ?Autor
     {
         return (new AutorDAO())->selectById($Id);
