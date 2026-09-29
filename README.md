@@ -56,13 +56,13 @@ O sistema permite o controle de empréstimos de livros em uma biblioteca, gerenc
 
 1. Clone o repositório
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/GbrlGmn/TccSenai
    ```
 2. Coloque o projeto na pasta do seu servidor local (ex: `htdocs`, no caso do XAMPP)
 3. Crie o banco de dados e configure as credenciais em `config.php`
 4. Acesse o sistema pelo navegador, ex:
    ```
-   http://localhost/nome-do-projeto/index.php
+   http://localhost/TccSenai/index.php
    ```
 
 ## 🏗️ Arquitetura
